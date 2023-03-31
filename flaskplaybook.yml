@@ -51,7 +51,7 @@
       shell: |
            source /opt/flask-app/env/bin/activate
            export FLASK_APP=/opt/flask-app/app.py
-           /opt/flask-app/env/bin/flask run --host=http://54.158.82.99/ &
+           /opt/flask-app/env/bin/flask run --host=http://10.0.1.248/ &
 
     # - name: Start the Flask App 
     #   command: /bin/bash -c "source /opt/flask-app/env/bin/activate && export FLASK_APP=/opt/flask-app/app.py && /opt/flask-app/env/bin/flask run --host=0.0.0.0 &"
