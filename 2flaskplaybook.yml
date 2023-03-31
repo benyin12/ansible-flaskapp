@@ -1,6 +1,6 @@
 ---
 - name: Deploy Flask app
-  hosts: webservers
+  hosts: node1
   become: true
   remote_user: root
   
