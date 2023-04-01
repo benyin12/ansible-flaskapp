@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-            sh 'chown jenkins /home/ubuntu/kikikey.pem'
+            sh 'sudo chown jenkins /home/ubuntu/kikikey.pem'
             sshagent(credentials: ['ubuntu']){
                 sh '''
                 ansible-playbook 2flaskplaybook.yml -i hosts.ini 
