@@ -9,7 +9,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                ansible-playbook 2flaskplaybook.yml -i hosts.ini
+                 ansiblePlaybook become: true, disableHostKeyChecking: true, ansible-playbook 2flaskplaybook.yml -i hosts.ini
                 '''
             }
         }
