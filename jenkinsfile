@@ -8,6 +8,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+            ssh agent(['ubuntu'])
                 sh 'chmod 600 ./kikikey.pem'
                 sh '''
                 ansible-playbook 2flaskplaybook.yml -i hosts.ini 
