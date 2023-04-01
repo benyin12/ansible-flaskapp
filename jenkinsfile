@@ -1,26 +1,18 @@
 pipeline {
     agent any
     stages {
-        stage ('initialize mvn') {
+        stage('Checkout Code') {
             steps {
-                sh 'mvn initialize'
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/benyin12/ansible-flaskapp.git']]])
             }
         }
-          stage ('build') {
+        stage('Deploy') {
             steps {
-                sh 'mvn clean package'
+                sh 'chmod 400 ./kikikey.pem'
+                sh '''
+                ansible-playbook 2flaskplaybook.yml -i hosts.ini
+                '''
             }
         }
-          stage ('test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-          stage ('deployment') {
-            steps {
-             
-                ansiblePlaybook become: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.ini', playbook: '2flaskplaybook.yml'
-            }
-        }       
     }
 }
