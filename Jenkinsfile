@@ -7,10 +7,8 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps {
-                sh '''
+            steps 
                  ansiblePlaybook become: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.ini', playbook: '2flaskplaybook.yml'
-                '''
             }
         }
     }
