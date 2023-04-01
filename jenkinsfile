@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    stages {
+        stage ('initialize mvn') {
+            steps {
+                sh 'mvn initialize'
+            }
+        }
+          stage ('build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+          stage ('test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+          stage ('deployment') {
+            steps {
+                sh 'chmod 400 ./project.pem'
+                ansiblePlaybook become: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'host.ini', playbook: 'cal-play.yml'
+            }
+        }       
+    }
+}
