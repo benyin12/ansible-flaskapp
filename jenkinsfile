@@ -18,8 +18,8 @@ pipeline {
         }
           stage ('deployment') {
             steps {
-                sh 'chmod 400 ./project.pem'
-                ansiblePlaybook become: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'host.ini', playbook: 'cal-play.yml'
+             
+                ansiblePlaybook become: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.ini', playbook: '2flaskplaybook.yml'
             }
         }       
     }
