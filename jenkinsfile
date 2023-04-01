@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh 'chmod 400 ./kikikey.pem'
                 sh '''
-                ansible-playbook 2flaskplaybook.yml -i hosts.ini
+                scp -o StrictHostKeyChecking=no ansible-playbook 2flaskplaybook.yml -i hosts.ini
                 '''
             }
         }
