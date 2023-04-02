@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout SCM') {
+            steps {
+                git branch: 'main', credentialsId: 'ee377369-1077-4719-bef7-705af161460a', url: 'https://github.com/benyin12/ansible-flaskapp.git'
+            }
+        }
+
+        stage('Checkout Ansible playbook') {
+            steps {
+                git branch: 'main', credentialsId: 'ee377369-1077-4719-bef7-705af161460a', url: 'https://github.com/benyin12/ansible-flaskapp.git'
+            }
+        }
+
+        stage('Run Ansible playbook') {
+            steps {
+                ansiblePlaybook credentialsId: '3b6c9533-225e-471f-9ec4-033a5a0c0a76', inventory: 'hosts.ini', playbook: '2flaskplaybook.yml'
+            }
+        }
+    }
+}
